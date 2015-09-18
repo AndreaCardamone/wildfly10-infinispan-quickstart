@@ -15,21 +15,18 @@ public class TestService {
 	private EmbeddedCacheManager manager;
 
 	public String test() {
-		return testManager();
-	}
-
-	private String testManager() {
+		String test;
 		try {
-			String test = "test 1: " + cls(manager) + "\n";
+			test  = "cache manager class: " + cls(manager) + "\n";
 
 			Cache<Object, Object> cache = manager.getCache();
-			test += "test 3: " + cls(cache) + "\n";
-
-			Configuration configuration = cache.getCacheConfiguration();
-			test += "test 3: " + configuration + "\n";
+			test += "cache default class: " + cls(cache) + "\n";
 
 			AdvancedCache<Object, Object> advanced_cache = cache.getAdvancedCache();
-			test += "test 4: " + advanced_cache.getTransactionManager() + "\n";
+			test += "tx manager class:   " + advanced_cache.getTransactionManager() + "\n";
+
+			Configuration configuration = cache.getCacheConfiguration();
+			test += "cache confifugration:\n" + configuration + "\n";
 
 			return test;
 		}
@@ -39,7 +36,7 @@ public class TestService {
 	}
 
 	private String cls(Object o) {
-		return o != null ? o.getClass().toString() : "null";
+		return o != null? o.getClass().toString() : "null";
 	}
 
 }

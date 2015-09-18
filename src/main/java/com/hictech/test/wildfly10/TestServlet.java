@@ -14,17 +14,17 @@ import javax.servlet.http.HttpServletResponse;
 @SuppressWarnings("serial")
 public class TestServlet extends HttpServlet {
 
-    @Resource(lookup="java:global/hcloud/TestService")
-    private TestService service;
+	@Resource(lookup = "java:global/hcloud/TestService")
+	private TestService service;
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/plain");
-        
-        try( PrintWriter writer = resp.getWriter() ) {
-        	writer.println(service.test());
-        	writer.close();
-        }
-    }
-    
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setContentType("text/plain");
+
+		try( PrintWriter writer = resp.getWriter() ) {
+			writer.println(service.test());
+			writer.close();
+		}
+	}
+
 }
