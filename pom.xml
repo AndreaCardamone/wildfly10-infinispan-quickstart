@@ -26,7 +26,6 @@
 		<!-- version properties -->		
 		<version.java>1.8</version.java>
         <version.jboss.bom>10.0.0.CR1</version.jboss.bom>
-        <version.jboss.bom2>9.0.1.Final</version.jboss.bom2>
         <version.wildfly.maven.plugin>1.0.2.Final</version.wildfly.maven.plugin>
         <version.compiler.plugin>3.1</version.compiler.plugin>
         <version.war.plugin>2.2</version.war.plugin>
@@ -153,4 +152,30 @@
 			</plugin>
 		</plugins>
 	</build>
+	
+	
+	<profiles>
+		<profile>
+			<activation>
+				<property>
+					<name>wildfly9</name>
+				</property>
+			</activation>
+			
+			<properties>
+		        <version.jboss.bom2>9.0.1.Final</version.jboss.bom2>
+			</properties>
+		</profile>
+		
+		<profile>
+			<activation>
+				<property>
+					<name>wildfly10</name>
+				</property>
+			</activation>
+			<properties>
+		        <version.jboss.bom2>10.0.0.CR1</version.jboss.bom2>
+			</properties>
+		</profile>
+	</profiles>
 </project>
