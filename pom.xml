@@ -155,9 +155,10 @@
 
 	<profiles>
 		<profile>
+			<id>w9</id>
 			<activation>
 				<property>
-					<name>wildfly9</name>
+					<name>v9</name>
 				</property>
 			</activation>
 
@@ -168,10 +169,9 @@
 
 		<profile>
 			<activation>
-				<property>
-					<name>wildfly10</name>
-				</property>
+				<activeByDefault></activeByDefault>
 			</activation>
+			
 			<properties>
 				<version.jboss.bom2>10.0.0.CR1</version.jboss.bom2>
 			</properties>
