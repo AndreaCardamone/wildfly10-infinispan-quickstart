@@ -23,7 +23,7 @@
 
 		<!-- version properties -->
 		<version.java>1.8</version.java>
-		<version.jboss.bom>10.0.0.CR1</version.jboss.bom>
+		<version.wildfly>10.0.0.CR1</version.wildfly>
 		<version.wildfly.maven.plugin>1.0.2.Final</version.wildfly.maven.plugin>
 		<version.compiler.plugin>3.1</version.compiler.plugin>
 		<version.war.plugin>2.2</version.war.plugin>
@@ -43,7 +43,7 @@
 			<dependency>
 				<groupId>org.wildfly</groupId>
 				<artifactId>wildfly-clustering-ee-infinispan</artifactId>
-				<version>${version.jboss.bom}</version>
+				<version>${version.wildfly}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -156,24 +156,9 @@
 	<profiles>
 		<profile>
 			<id>w9</id>
-			<activation>
-				<property>
-					<name>v9</name>
-				</property>
-			</activation>
 
 			<properties>
-				<version.jboss.bom2>9.0.1.Final</version.jboss.bom2>
-			</properties>
-		</profile>
-
-		<profile>
-			<activation>
-				<activeByDefault></activeByDefault>
-			</activation>
-			
-			<properties>
-				<version.jboss.bom2>10.0.0.CR1</version.jboss.bom2>
+				<version.wildfly>9.0.1.Final</version.wildfly>
 			</properties>
 		</profile>
 	</profiles>

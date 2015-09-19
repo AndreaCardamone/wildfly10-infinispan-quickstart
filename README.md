@@ -20,13 +20,14 @@ Enter into project root dir
 
 Generate package 
 
-	wildfly 10: mvn -Pw10 clean package
+	wildfly 10: mvn clean package
 	wildfly 9:  mvn -Pw9 clean package
 
 Deploy into container
 
 	mvn wildfly:deploy
 
+### Rest application
 Test application
 
 	curl http://localhost:8080/hcloud/test
