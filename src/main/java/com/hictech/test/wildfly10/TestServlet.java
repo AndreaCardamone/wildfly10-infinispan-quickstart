@@ -23,7 +23,6 @@ public class TestServlet extends HttpServlet {
 
 		try( PrintWriter writer = resp.getWriter() ) {
 			writer.println(service.test());
-			writer.close();
 		}
 	}
 
