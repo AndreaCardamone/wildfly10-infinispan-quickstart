@@ -1,18 +1,21 @@
 package com.hictech.test.wildfly10;
 
+import static org.infinispan.configuration.cache.CacheMode.LOCAL;
+import static org.infinispan.configuration.cache.CacheMode.REPL_SYNC;
+import static org.infinispan.transaction.TransactionMode.TRANSACTIONAL;
+import static org.infinispan.util.concurrent.IsolationLevel.SERIALIZABLE;
+
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
 
 import org.infinispan.AdvancedCache;
 import org.infinispan.Cache;
-import org.infinispan.configuration.cache.CacheMode;
 import org.infinispan.configuration.cache.Configuration;
 import org.infinispan.configuration.cache.ConfigurationBuilder;
 import org.infinispan.manager.EmbeddedCacheManager;
+import org.infinispan.remoting.transport.Transport;
 import org.infinispan.transaction.LockingMode;
-import org.infinispan.transaction.TransactionMode;
 import org.infinispan.transaction.lookup.GenericTransactionManagerLookup;
-import org.infinispan.util.concurrent.IsolationLevel;
 
 @Stateless
 public class TestService {
@@ -33,9 +36,6 @@ public class TestService {
 			AdvancedCache<Object, Object> advanced_cache = cache.getAdvancedCache();
 			test += "tx manager class:    " + advanced_cache.getTransactionManager() + "\n";
 
-			Configuration configuration = cache.getCacheConfiguration();
-			test += "cache confifugration:\n" + configuration + "\n";
-
 			return test;
 		}
 		catch (Exception e) {
@@ -43,19 +43,21 @@ public class TestService {
 		}
 	}
 	
-	private static Configuration conf() {
+	private Configuration conf() {
+		Transport transport = manager.getGlobalComponentRegistry().getGlobalConfiguration().transport().transport();
+		
 		return new ConfigurationBuilder()
 			.clustering()
-				.cacheMode(CacheMode.LOCAL)
+				.cacheMode(transport == null? LOCAL : REPL_SYNC)
 				
 			.transaction()
-				.transactionMode(TransactionMode.TRANSACTIONAL)
+				.transactionMode(TRANSACTIONAL)
 				.transactionManagerLookup(new GenericTransactionManagerLookup())
 				.autoCommit(false)
-				
+			
 			.lockingMode(LockingMode.PESSIMISTIC)
 				.locking()
-				.isolationLevel(IsolationLevel.SERIALIZABLE)
+				.isolationLevel(SERIALIZABLE)
 				
 			.persistence()
 				.passivation(false)
