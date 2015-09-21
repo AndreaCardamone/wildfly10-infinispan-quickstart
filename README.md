@@ -34,3 +34,9 @@ Test application
 
 	curl http://localhost:8080/hcloud/test
 	
+** the espected result is **
+
+	cache manager class: class org.jboss.as.clustering.infinispan.DefaultCacheContainer
+	cache default class: class org.jboss.as.clustering.infinispan.DefaultCache
+	tx manager class:    com.arjuna.ats.jbossatx.jta.TransactionManagerDelegate@54e40aa5
+	
