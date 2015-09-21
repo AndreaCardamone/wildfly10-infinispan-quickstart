@@ -46,7 +46,7 @@ public class TestService {
 	private static Configuration conf() {
 		return new ConfigurationBuilder()
 			.clustering()
-				.cacheMode(CacheMode.REPL_SYNC)
+				.cacheMode(CacheMode.LOCAL)
 				
 			.transaction()
 				.transactionMode(TransactionMode.TRANSACTIONAL)
