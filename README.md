@@ -12,6 +12,8 @@ execute the standalone batch
 
 	linux:  ./standalone.sh --debug
 	window: ./standalone.bat --debug
+	
+note: the --debug option allows the remote debugging into IDE (tested on Eclipse and NetBeans)
 
 ### WAR packaging
 Enter into project root dir

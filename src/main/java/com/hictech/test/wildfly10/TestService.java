@@ -8,9 +8,6 @@ import org.infinispan.Cache;
 import org.infinispan.configuration.cache.CacheMode;
 import org.infinispan.configuration.cache.Configuration;
 import org.infinispan.configuration.cache.ConfigurationBuilder;
-import org.infinispan.configuration.global.GlobalConfiguration;
-import org.infinispan.configuration.global.GlobalConfigurationBuilder;
-import org.infinispan.manager.DefaultCacheManager;
 import org.infinispan.manager.EmbeddedCacheManager;
 import org.infinispan.transaction.LockingMode;
 import org.infinispan.transaction.TransactionMode;
@@ -49,7 +46,7 @@ public class TestService {
 	private static Configuration conf() {
 		return new ConfigurationBuilder()
 			.clustering()
-				.cacheMode(CacheMode.LOCAL)
+				.cacheMode(CacheMode.REPL_SYNC)
 				
 			.transaction()
 				.transactionMode(TransactionMode.TRANSACTIONAL)
